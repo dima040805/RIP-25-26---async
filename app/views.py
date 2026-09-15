@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+import os
 import time
 import random
 import requests
@@ -8,8 +9,8 @@ from concurrent import futures
 import math
 
 # Конфигурация
-MAIN_SERVICE_URL = "http://localhost:8080/api/v1"
-AUTH_TOKEN = "secret123"  # Токен для авторизации
+MAIN_SERVICE_URL = os.environ.get("MAIN_SERVICE_URL", "http://localhost:8080/api/v1")
+AUTH_TOKEN = os.environ.get("ASYNC_AUTH_TOKEN", "secret123")  # токен для PUT в основной сервис
 
 executor = futures.ThreadPoolExecutor(max_workers=5)
 
